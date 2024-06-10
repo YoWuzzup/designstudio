@@ -8,7 +8,16 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      textColor: {
+        primary: "rgb(var(--primary-text-color))",
+        secondary: "rgb(var(--secondary-text-color))",
+      },
+      backgroundColor: {
+        primary: "rgb(var(--primary-background))",
+        secondary: "rgb(var(--secondary-background))",
+      },
       backgroundImage: {
+        intro: "url('/images/hero-bg.webp')",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
