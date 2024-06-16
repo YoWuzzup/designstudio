@@ -11,10 +11,12 @@ const config: Config = {
       textColor: {
         primary: "rgb(var(--primary-text-color))",
         secondary: "rgb(var(--secondary-text-color))",
+        colorful: "#cc147f",
       },
       backgroundColor: {
         primary: "rgb(var(--primary-background))",
         secondary: "rgb(var(--secondary-background))",
+        colorful: "#cc147f",
       },
       backgroundImage: {
         intro: "url('/images/hero-bg.webp')",
