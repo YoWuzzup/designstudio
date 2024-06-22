@@ -115,18 +115,23 @@ export const Intro: React.FC = () => {
           </div>
 
           {/* scroll down button */}
-          <div className="group/scrolldown text-primary cursor-pointer flex justify-center align-center items-center nowrap gap-5">
-            <span
-              className="relative duration-500 text-primary uppercase hidden md:block
-                after:content-[''] after:absolute after:h-[2px] after:w-full after:opacity-0
-                after:bg-secondary after:-bottom-4 after:left-0 after:transition-all after:duration-500 
-                group-hover/scrolldown:after:opacity-100"
+          <div>
+            <a
+              href="#whoweare"
+              className="group/scrolldown scroll-smooth text-primary cursor-pointer flex justify-center align-center items-center nowrap gap-5"
             >
-              scroll down
-            </span>{" "}
-            <button className="w-[42px] h-[42px] bg-white rounded-full md:w-[48px] md:h-[48px]">
-              <ArrowDownwardIcon className="text-md text-secondary" />
-            </button>
+              <span
+                className="relative duration-500 text-primary uppercase hidden md:block
+              after:content-[''] after:absolute after:h-[2px] after:w-full after:opacity-0
+              after:bg-secondary after:-bottom-4 after:left-0 after:transition-all after:duration-500 
+              group-hover/scrolldown:after:opacity-100"
+              >
+                scroll down
+              </span>{" "}
+              <div className="w-[42px] h-[42px] flex justify-center items-center bg-white rounded-full md:w-[48px] md:h-[48px]">
+                <ArrowDownwardIcon className="text-md text-secondary" />
+              </div>
+            </a>
           </div>
         </div>
       </div>
