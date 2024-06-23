@@ -2,43 +2,53 @@
 import { useRef } from "react";
 import { useIsVisible } from "@/hooks/useIsVisible";
 
+import TvIcon from "@mui/icons-material/Tv";
+import PublicIcon from "@mui/icons-material/Public";
+import TableViewIcon from "@mui/icons-material/TableView";
+import ViewInArIcon from "@mui/icons-material/ViewInAr";
+import WindowIcon from "@mui/icons-material/Window";
+import WidgetsIcon from "@mui/icons-material/Widgets";
+
 const info = [
   {
     name: "Brand Identity",
     para: "Nemo cupiditate ab quibusdam quaerat impedit magni. Earum suscipit ipsum laudantium. Quo delectus est. Maiores voluptas ab sit natus veritatis ut. Debitis nulla cumque veritatis. Sunt suscipit voluptas ipsa in tempora esse soluta sint.",
-
-    icon: "e9ce",
+    icon: <TvIcon className="text-xl text-[#26bfb5] w-[48px] h-[48px] mb-7" />,
   },
   {
     name: "Illustration",
     para: "Nemo cupiditate ab quibusdam quaerat impedit magni. Earum suscipit ipsum laudantium. Quo delectus est. Maiores voluptas ab sit natus veritatis ut. Debitis nulla cumque veritatis. Sunt suscipit voluptas ipsa in tempora esse soluta sint.",
-
-    icon: "e957",
+    icon: (
+      <PublicIcon className="text-xl text-[#26bfb5] w-[48px] h-[48px] mb-7" />
+    ),
   },
   {
     name: "Web Design",
     para: "Nemo cupiditate ab quibusdam quaerat impedit magni. Earum suscipit ipsum laudantium. Quo delectus est. Maiores voluptas ab sit natus veritatis ut. Debitis nulla cumque veritatis. Sunt suscipit voluptas ipsa in tempora esse soluta sint.",
-
-    icon: "e939",
+    icon: (
+      <TableViewIcon className="text-xl text-[#26bfb5] w-[48px] h-[48px] mb-7" />
+    ),
   },
   {
     name: "Product Strategy",
     para: "Nemo cupiditate ab quibusdam quaerat impedit magni. Earum suscipit ipsum laudantium. Quo delectus est. Maiores voluptas ab sit natus veritatis ut. Debitis nulla cumque veritatis. Sunt suscipit voluptas ipsa in tempora esse soluta sint.",
-
-    icon: "e930",
+    icon: (
+      <ViewInArIcon className="text-xl text-[#26bfb5] w-[48px] h-[48px] mb-7" />
+    ),
   },
-
   {
     name: "UI/UX Design",
     para: "Nemo cupiditate ab quibusdam quaerat impedit magni. Earum suscipit ipsum laudantium. Quo delectus est. Maiores voluptas ab sit natus veritatis ut. Debitis nulla cumque veritatis. Sunt suscipit voluptas ipsa in tempora esse soluta sint.",
-
-    icon: "e9e2",
+    icon: (
+      <WindowIcon className="text-xl text-[#26bfb5] w-[48px] h-[48px] mb-7" />
+    ),
   },
   {
     name: "Mobile Development",
     para: "Nemo cupiditate ab quibusdam quaerat impedit magni. Earum suscipit ipsum laudantium. Quo delectus est. Maiores voluptas ab sit natus veritatis ut. Debitis nulla cumque veritatis. Sunt suscipit voluptas ipsa in tempora esse soluta sint.",
-
-    icon: "e968",
+    icon: (
+      <WidgetsIcon className="text-xl text-[#26bfb5] w-[48px] h-[48px] mb-7" />
+    ),
   },
 ];
 
@@ -47,7 +57,7 @@ const Item = ({
   info,
 }: {
   index: number;
-  info: { name: string; para: string; icon: string };
+  info: { name: string; para: string; icon: React.ReactElement };
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const isVisible = useIsVisible(ref);
@@ -55,13 +65,14 @@ const Item = ({
   return (
     <div
       ref={ref}
-      className={`w-full md:w-[47%] ${isVisible ? "animate-fadeinup" : ""}`}
+      className={`w-full lg:w-[47%] ${isVisible ? "animate-fadeinup" : ""}`}
     >
-      <div className="">asd</div>
+      {info.icon}
+
       <div
         data-num={index + 1}
         className={`relative text-secondary text-xl md:text-3xl mb-6 font-semibold h-[48px] 
-              flex justify-start items-center`}
+            flex justify-start items-center`}
       >
         {info.name}
       </div>
@@ -78,11 +89,9 @@ export const WhatWeDo: React.FC = () => {
     <section className="w-full bg-[#f1f1f1] flex flex-col justify-center items-center py-20 md:py-44">
       <div
         className={`w-10/12 mb-16 ${headerIsVisible ? "animate-fadeinup" : ""}`}
+        ref={headerRef}
       >
-        <div
-          ref={headerRef}
-          className={`text-colorful text-sm md:text-base uppercase mb-5`}
-        >
+        <div className={`text-colorful text-sm md:text-base uppercase mb-5`}>
           / what we do
         </div>
         <h2
@@ -100,7 +109,7 @@ export const WhatWeDo: React.FC = () => {
         </p>
       </div>
 
-      <div className="w-10/12 flex flex-col md:flex-row flex-wrap justify-between items-start gap-5">
+      <div className="w-10/12 flex flex-col md:flex-row flex-wrap justify-between items-start gap-12">
         {info.map((i, indx) => (
           <Item key={`${i.name}_${indx}`} index={indx} info={i} />
         ))}

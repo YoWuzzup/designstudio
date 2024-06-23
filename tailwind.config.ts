@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import defaultTheme from "tailwindcss/defaultTheme";
 
 const config: Config = {
   content: [
@@ -32,6 +33,9 @@ const config: Config = {
           "0%": { opacity: "0", transform: "translate3d(0,100%,0)" },
           "100%": { opacity: "1", transform: "translate3d(0,0,0)" },
         },
+      },
+      fontFamily: {
+        sans: ["icomoon", ...defaultTheme.fontFamily.sans],
       },
     },
   },
