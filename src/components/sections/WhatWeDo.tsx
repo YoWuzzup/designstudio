@@ -1,6 +1,5 @@
 "use client";
-import { useRef } from "react";
-import { useIsVisible } from "@/hooks/useIsVisible";
+import { useInView } from "react-intersection-observer";
 
 import TvIcon from "@mui/icons-material/Tv";
 import PublicIcon from "@mui/icons-material/Public";
@@ -59,13 +58,14 @@ const Item = ({
   index: number;
   info: { name: string; para: string; icon: React.ReactElement };
 }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const isVisible = useIsVisible(ref);
+  const [itemRef, inView] = useInView({ triggerOnce: true, delay: 300 });
 
   return (
     <div
-      ref={ref}
-      className={`w-full lg:w-[47%] ${isVisible ? "animate-fadeinup" : ""}`}
+      ref={itemRef}
+      className={`w-full lg:w-[47%] duration-700 ${
+        inView ? "opacity-100" : "opacity-0"
+      } ${inView ? "translate-y-0" : "translate-y-12"}`}
     >
       {info.icon}
 
@@ -82,16 +82,22 @@ const Item = ({
 };
 
 export const WhatWeDo: React.FC = () => {
-  const headerRef = useRef<HTMLDivElement>(null);
-  const headerIsVisible = useIsVisible(headerRef);
+  const [headerRef, inView] = useInView({ triggerOnce: true, delay: 300 });
 
   return (
-    <section className="w-full bg-[#f1f1f1] flex flex-col justify-center items-center py-20 md:py-44">
+    <section
+      id="whatwedo"
+      className="w-full bg-[#f1f1f1] flex flex-col justify-center items-center py-20 md:py-44"
+    >
       <div
-        className={`w-10/12 mb-16 ${headerIsVisible ? "animate-fadeinup" : ""}`}
+        className={`w-10/12 mb-16 duration-700 ${
+          inView ? "opacity-100" : "opacity-0"
+        } ${inView ? "translate-y-0" : "translate-y-12"}`}
         ref={headerRef}
       >
-        <div className={`text-colorful text-sm md:text-base uppercase mb-5`}>
+        <div
+          className={`text-colorful text-sm md:text-base uppercase mb-5 font-semibold`}
+        >
           / what we do
         </div>
         <h2

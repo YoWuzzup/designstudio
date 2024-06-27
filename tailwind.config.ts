@@ -21,17 +21,23 @@ const config: Config = {
       },
       backgroundImage: {
         intro: "url('/images/hero-bg.webp')",
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        numbers: "url('/images/stats-bg.jpg.webp')",
+        "gradient-radial": "radial-gradient(var(--primary-background))",
         "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+          "conic-gradient(from 180deg at 50% 50%, var(--primary-background))",
       },
       animation: {
         fadeinup: "fade-in-up 1s ease-in-out 0.25s 1",
+        fadeindown: "fade-in-down 1s ease-in-out 0.25s 1",
       },
       keyframes: {
         "fade-in-up": {
           "0%": { opacity: "0", transform: "translate3d(0,100%,0)" },
           "100%": { opacity: "1", transform: "translate3d(0,0,0)" },
+        },
+        "fade-in-down": {
+          "0%": { opacity: "0", transform: "translate3d(0,0,0)" },
+          "100%": { opacity: "1", transform: "translate3d(0,100%,0)" },
         },
       },
       fontFamily: {

@@ -1,6 +1,5 @@
 "use client";
-import { useIsVisible } from "@/hooks/useIsVisible";
-import { useRef } from "react";
+import { useInView } from "react-intersection-observer";
 
 const info = [
   {
@@ -28,13 +27,14 @@ const Item = ({
   index: number;
   info: { name: string; para: string };
 }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const isVisible = useIsVisible(ref);
+  const [itemRef, inView] = useInView({ triggerOnce: true, delay: 300 });
 
   return (
     <div
-      ref={ref}
-      className={`w-full md:w-[47%] ${isVisible ? "animate-fadeinup" : ""}`}
+      ref={itemRef}
+      className={`w-full md:w-[47%] duration-700 ${
+        inView ? "opacity-80" : "opacity-0"
+      } ${inView ? "translate-y-0" : "translate-y-12"}`}
     >
       <div
         data-num={index + 1}
@@ -59,20 +59,21 @@ const Item = ({
 };
 
 export const WhoWeAre: React.FC = () => {
-  const headerRef = useRef<HTMLDivElement>(null);
-  const headerIsVisible = useIsVisible(headerRef);
+  const [headerRef, inView] = useInView({ triggerOnce: true });
 
   return (
     <section
-      id="whoweare"
+    id="whoweare"
       className="w-full bg-white flex flex-col justify-center items-center py-20 md:py-44"
     >
       <div
-        className={`w-10/12 mb-16 ${headerIsVisible ? "animate-fadeinup" : ""}`}
+        className={`w-10/12 mb-16 duration-700 ${
+          inView ? "opacity-80" : "opacity-0"
+        } ${inView ? "translate-y-0" : "translate-y-12"}`}
       >
         <div
           ref={headerRef}
-          className={`text-colorful text-sm md:text-base uppercase mb-5`}
+          className={`text-colorful text-sm md:text-base uppercase mb-5 font-semibold`}
         >
           / who we are
         </div>
