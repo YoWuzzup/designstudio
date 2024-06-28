@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useWindowSize } from "usehooks-ts";
 import { useInView } from "react-intersection-observer";
 
@@ -8,6 +8,7 @@ import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import XIcon from "@mui/icons-material/X";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import { MenuContext } from "@/context/context";
 
 const socialMedia = [
   {
@@ -27,9 +28,28 @@ const sideLinks = [
 
 export const Intro: React.FC = () => {
   const [headerRef, inView] = useInView({ triggerOnce: true });
-  const [isNavOpen, setIsNavOpen] = useState(false);
+  const menuContext = useContext(MenuContext);
+  const [sticked, setSticked] = useState(false);
+
+  if (!menuContext) return;
+  const { isOpen, setIsOpen } = menuContext;
+
   const [isMounted, setIsMounted] = useState(false);
   const { width } = useWindowSize();
+
+  const handleScroll = () => {
+    const ypos = window.scrollY;
+
+    setSticked(ypos > 600);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     setIsMounted(true);
@@ -50,17 +70,21 @@ export const Intro: React.FC = () => {
           </Link>
 
           {/* side menu button */}
-          <div className="group/menubtn absolute right-5 sm:right-20 top-11 sm:top-14 text-primary cursor-pointer flex justify-center align-center items-center nowrap gap-5">
-            <span className="group-hover/menubtn:text-colorful duration-500 text-primary uppercase hidden md:block">
+          <div
+            onClick={() => setIsOpen(!isOpen)}
+            className="group/menubtn fixed right-5 sm:right-20 top-11 sm:top-14 text-primary cursor-pointer flex justify-center align-center items-center nowrap gap-5"
+          >
+            <span
+              className={`group-hover/menubtn:text-colorful duration-500 text-primary uppercase ${
+                sticked || width < 500 ? "hidden" : "block"
+              }`}
+            >
               menu
             </span>
-            <div
-              className="space-y-2"
-              onClick={() => setIsNavOpen((prev) => !prev)}
-            >
-              <span className="block h-0.5 w-8 bg-secondary"></span>
-              <span className="block h-0.5 w-8 bg-secondary"></span>
-              <span className="block h-0.5 w-8 bg-secondary"></span>
+            <div className={`space-y-2 ${sticked ? "p-3 bg-black" : ""}`}>
+              <span className="block h-0.5 w-7 bg-secondary"></span>
+              <span className="block h-0.5 w-7 bg-secondary"></span>
+              <span className="block h-0.5 w-7 bg-secondary"></span>
             </div>
           </div>
         </div>
