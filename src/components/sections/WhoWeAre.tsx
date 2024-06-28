@@ -1,24 +1,7 @@
 "use client";
 import { useInView } from "react-intersection-observer";
 
-const info = [
-  {
-    name: "Define",
-    para: "Quos dolores saepe mollitia deserunt accusamus autem reprehenderit. Voluptas facere animi explicabo non quis magni recusandae. Numquam debitis pariatur omnis facere unde. Laboriosam minus amet nesciunt est. Et saepe eos maxime tempore quasi deserunt ab.",
-  },
-  {
-    name: "Design",
-    para: "Quos dolores saepe mollitia deserunt accusamus autem reprehenderit. Voluptas facere animi explicabo non quis magni recusandae. Numquam debitis pariatur omnis facere unde. Laboriosam minus amet nesciunt est. Et saepe eos maxime tempore quasi deserunt ab.",
-  },
-  {
-    name: "Build",
-    para: "Quos dolores saepe mollitia deserunt accusamus autem reprehenderit. Voluptas facere animi explicabo non quis magni recusandae. Numquam debitis pariatur omnis facere unde. Laboriosam minus amet nesciunt est. Et saepe eos maxime tempore quasi deserunt ab.",
-  },
-  {
-    name: "Launch",
-    para: "Quos dolores saepe mollitia deserunt accusamus autem reprehenderit. Voluptas facere animi explicabo non quis magni recusandae. Numquam debitis pariatur omnis facere unde. Laboriosam minus amet nesciunt est. Et saepe eos maxime tempore quasi deserunt ab.",
-  },
-];
+import { whoWeAreInfo } from "@/utils/common";
 
 const Item = ({
   index,
@@ -63,7 +46,7 @@ export const WhoWeAre: React.FC = () => {
 
   return (
     <section
-    id="whoweare"
+      id="whoweare"
       className="w-full bg-white flex flex-col justify-center items-center py-20 md:py-44"
     >
       <div
@@ -94,7 +77,7 @@ export const WhoWeAre: React.FC = () => {
       </div>
 
       <div className="w-10/12 flex flex-col md:flex-row flex-wrap justify-between items-start gap-5">
-        {info.map((i, indx) => (
+        {whoWeAreInfo.map((i, indx) => (
           <Item key={`${i.name}_${indx}`} index={indx} info={i} />
         ))}
       </div>

@@ -2,12 +2,7 @@
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
-const numbers = [
-  { num: 129, title: "awards recieved" },
-  { num: 1507, title: "cups of coffee" },
-  { num: 108, title: "projects completed" },
-  { num: 103, title: "happy clients" },
-];
+import { numbers } from "@/utils/common";
 
 const AnimatedNumber: React.FC<{ num: number; isVisible: boolean }> = ({
   num,

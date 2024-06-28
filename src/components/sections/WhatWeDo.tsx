@@ -1,55 +1,7 @@
 "use client";
 import { useInView } from "react-intersection-observer";
 
-import TvIcon from "@mui/icons-material/Tv";
-import PublicIcon from "@mui/icons-material/Public";
-import TableViewIcon from "@mui/icons-material/TableView";
-import ViewInArIcon from "@mui/icons-material/ViewInAr";
-import WindowIcon from "@mui/icons-material/Window";
-import WidgetsIcon from "@mui/icons-material/Widgets";
-
-const info = [
-  {
-    name: "Brand Identity",
-    para: "Nemo cupiditate ab quibusdam quaerat impedit magni. Earum suscipit ipsum laudantium. Quo delectus est. Maiores voluptas ab sit natus veritatis ut. Debitis nulla cumque veritatis. Sunt suscipit voluptas ipsa in tempora esse soluta sint.",
-    icon: <TvIcon className="text-xl text-[#26bfb5] w-[48px] h-[48px] mb-7" />,
-  },
-  {
-    name: "Illustration",
-    para: "Nemo cupiditate ab quibusdam quaerat impedit magni. Earum suscipit ipsum laudantium. Quo delectus est. Maiores voluptas ab sit natus veritatis ut. Debitis nulla cumque veritatis. Sunt suscipit voluptas ipsa in tempora esse soluta sint.",
-    icon: (
-      <PublicIcon className="text-xl text-[#26bfb5] w-[48px] h-[48px] mb-7" />
-    ),
-  },
-  {
-    name: "Web Design",
-    para: "Nemo cupiditate ab quibusdam quaerat impedit magni. Earum suscipit ipsum laudantium. Quo delectus est. Maiores voluptas ab sit natus veritatis ut. Debitis nulla cumque veritatis. Sunt suscipit voluptas ipsa in tempora esse soluta sint.",
-    icon: (
-      <TableViewIcon className="text-xl text-[#26bfb5] w-[48px] h-[48px] mb-7" />
-    ),
-  },
-  {
-    name: "Product Strategy",
-    para: "Nemo cupiditate ab quibusdam quaerat impedit magni. Earum suscipit ipsum laudantium. Quo delectus est. Maiores voluptas ab sit natus veritatis ut. Debitis nulla cumque veritatis. Sunt suscipit voluptas ipsa in tempora esse soluta sint.",
-    icon: (
-      <ViewInArIcon className="text-xl text-[#26bfb5] w-[48px] h-[48px] mb-7" />
-    ),
-  },
-  {
-    name: "UI/UX Design",
-    para: "Nemo cupiditate ab quibusdam quaerat impedit magni. Earum suscipit ipsum laudantium. Quo delectus est. Maiores voluptas ab sit natus veritatis ut. Debitis nulla cumque veritatis. Sunt suscipit voluptas ipsa in tempora esse soluta sint.",
-    icon: (
-      <WindowIcon className="text-xl text-[#26bfb5] w-[48px] h-[48px] mb-7" />
-    ),
-  },
-  {
-    name: "Mobile Development",
-    para: "Nemo cupiditate ab quibusdam quaerat impedit magni. Earum suscipit ipsum laudantium. Quo delectus est. Maiores voluptas ab sit natus veritatis ut. Debitis nulla cumque veritatis. Sunt suscipit voluptas ipsa in tempora esse soluta sint.",
-    icon: (
-      <WidgetsIcon className="text-xl text-[#26bfb5] w-[48px] h-[48px] mb-7" />
-    ),
-  },
-];
+import { whatWeDoInfo } from "@/utils/common";
 
 const Item = ({
   index,
@@ -116,7 +68,7 @@ export const WhatWeDo: React.FC = () => {
       </div>
 
       <div className="w-10/12 flex flex-col md:flex-row flex-wrap justify-between items-start gap-12">
-        {info.map((i, indx) => (
+        {whatWeDoInfo.map((i, indx) => (
           <Item key={`${i.name}_${indx}`} index={indx} info={i} />
         ))}
       </div>

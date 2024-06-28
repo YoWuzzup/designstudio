@@ -6,48 +6,7 @@ import { useInView } from "react-intersection-observer";
 
 import ReactSlider from "react-slick";
 
-import lamp from "/public/images/lamp.jpg.webp";
-import salad from "/public/images/salad.jpg.webp";
-import woodcraft from "/public/images/woodcraft.jpg.webp";
-import fuji from "/public/images/fuji.jpg.webp";
-import liberty from "/public/images/liberty.jpg.webp";
-import shutterbug from "/public/images/shutterbug.jpg.webp";
-import user1 from "/public/images/user-01.jpg.webp";
-import user2 from "/public/images/user-02.jpg";
-import user3 from "/public/images/user-03.jpg";
-
-const opinions = [
-  {
-    name: "Tim Cook",
-    position: "CEO, Apple",
-    avatar: user1,
-    words: `Qui ipsam temporibus quisquam velMaiores eos cumque distinctio nam accusantium ipsum.
-        Laudantium quia consequatur molestias delectus culpa facere hic dolores aperiam. Accusantium quos qui praesentium corpori.`,
-  },
-  {
-    name: "Sundar Pichai",
-    position: "CEO, Google",
-    avatar: user2,
-    words: `Excepturi nam cupiditate culpa doloremque deleniti repellat. Veniam quos repellat voluptas animi adipisci.
-        Nisi eaque consequatur. Quasi voluptas eius distinctio. Atque eos maxime. Qui ipsam temporibus quisquam vel.`,
-  },
-  {
-    name: "Satya Nadella",
-    position: "CEO, Microsoft",
-    avatar: user3,
-    words: `Repellat dignissimos libero. Qui sed at corrupti expedita voluptas odit. Nihil ea quia nesciunt. Ducimus aut sed ipsam.
-        Autem eaque officia cum exercitationem sunt voluptatum accusamus. Quasi voluptas eius distinctio.`,
-  },
-];
-
-const images = [
-  { src: lamp, alt: "lamp", description: "web design" },
-  { src: fuji, alt: "fuji", description: "web design" },
-  { src: salad, alt: "salad", description: "branding" },
-  { src: liberty, alt: "liberty", description: "web development" },
-  { src: woodcraft, alt: "woodcraft", description: "branding" },
-  { src: shutterbug, alt: "shutterbug", description: "branding" },
-];
+import { opinions, images } from "@/utils/common";
 
 export const FeaturedWorks: React.FC = () => {
   const { width } = useWindowSize();
@@ -84,7 +43,10 @@ export const FeaturedWorks: React.FC = () => {
   }, [width]);
 
   return (
-    <section className="w-full bg-white flex flex-col justify-center items-center py-20 md:pt-44 md:pb-44">
+    <section
+      id="featured"
+      className="w-full bg-white flex flex-col justify-center items-center py-20 md:pt-44 md:pb-44"
+    >
       {/* START */}
       {/* HEADER */}
       <div

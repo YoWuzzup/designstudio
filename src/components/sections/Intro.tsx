@@ -1,30 +1,13 @@
 "use client";
 import Link from "next/link";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useWindowSize } from "usehooks-ts";
 import { useInView } from "react-intersection-observer";
-
-import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import XIcon from "@mui/icons-material/X";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { MenuContext } from "@/context/context";
 
-const socialMedia = [
-  {
-    name: "facebook",
-    href: "",
-    icon: <FacebookOutlinedIcon fontSize="small" />,
-  },
-  { name: "x", href: "", icon: <XIcon fontSize="small" /> },
-  { name: "linkedin", href: "", icon: <LinkedInIcon fontSize="small" /> },
-];
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 
-const sideLinks = [
-  { header: "about", subheader: "who we are", href: "whoweare" },
-  { header: "services", subheader: "what we do", href: "whatwedo" },
-  { header: "contact", subheader: "get in touch", href: "footer" },
-];
+import { socialMedia, sideLinksForIntro } from "@/utils/common";
 
 export const Intro: React.FC = () => {
   const [headerRef, inView] = useInView({ triggerOnce: true });
@@ -58,12 +41,12 @@ export const Intro: React.FC = () => {
   return (
     <section
       id="intro"
-      className="w-full min-h-screen pb-0 lg:pb-20 relative flex items-start justify-center bg-intro bg-cover bg-fixed"
+      className="w-full h-auto md:h-screen pb-32 lg:pb-20 relative flex items-start justify-center bg-intro bg-cover bg-fixed"
     >
       {/* background transparent */}
       <div className="w-full h-full absolute top-0 left-0 bg-transparent/[.7] z-0" />
 
-      <div className="w-[90%] mt-10 z-20">
+      <div className="w-[90%] h-full flex flex-col justify-between mt-10 z-20">
         <div className="w-full flex flex-row nowrap justify-between mb-48">
           <Link href={"/"} className="w-3/4 sm:w-auto">
             <img src="/logos/logo.svg" alt="logo" className=""></img>
@@ -113,7 +96,7 @@ export const Intro: React.FC = () => {
           </p>
 
           <div className="hidden lg:flex flex-col absolute right-0 top-1/2 -translate-y-1/2">
-            {sideLinks.map((l, i) => (
+            {sideLinksForIntro.map((l, i) => (
               <a
                 href={`#${l.href}`}
                 key={`${l.header}_${i}`}
@@ -136,7 +119,7 @@ export const Intro: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex flex-row nowrap gap-8 content-center items-center">
+        <div className="flex flex-col sm:flex-row flex-wrap mb-0 sm:mb-10 gap-8 justify-center items-center">
           <p className="font-semibold text-sm whitespace-nowrap">Follow Us</p>
           <div className="grow flex flex-row nowrap gap-3">
             {socialMedia.map((sm, indx) => (

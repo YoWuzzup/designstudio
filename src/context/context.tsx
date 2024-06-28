@@ -6,7 +6,9 @@ interface MenuContextType {
   setIsOpen: (isOpen: boolean) => void;
 }
 
-export const MenuContext = createContext<MenuContextType | null>(null);
+export const MenuContext = createContext<MenuContextType | undefined>(
+  undefined
+);
 
 export default function Context({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);

@@ -1,4 +1,3 @@
-"use client";
 import {
   Intro,
   WhoWeAre,
@@ -6,16 +5,13 @@ import {
   FeaturedWorks,
   Numbers,
   Footer,
+  SideMenu,
 } from "@/components";
-import { MenuContext } from "@/context/context";
-import { useContext } from "react";
 
 export default function Home() {
-  const a = useContext(MenuContext);
-  console.log(a);
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
+      <SideMenu />
       <Intro />
       <WhoWeAre />
       <WhatWeDo />

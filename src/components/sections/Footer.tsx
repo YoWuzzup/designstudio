@@ -3,23 +3,16 @@ import Link from "next/link";
 import { useInView } from "react-intersection-observer";
 import { useState } from "react";
 
-import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import XIcon from "@mui/icons-material/X";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 
-const socialMedia = [
-  {
-    name: "facebook",
-    href: "",
-    icon: <FacebookOutlinedIcon fontSize="small" />,
-  },
-  { name: "x", href: "", icon: <XIcon fontSize="small" /> },
-  { name: "linkedin", href: "", icon: <LinkedInIcon fontSize="small" /> },
-];
+import { socialMedia } from "@/utils/common";
 
 export const Footer: React.FC = () => {
   const [email, setEmail] = useState("");
+  const [emailIsSent, setEmailIsSent] = useState<boolean>(false);
+  const [errorSendingEmail, setErrorSendingEmail] = useState<Error | null>(
+    null
+  );
   const [headerRef, headerinView] = useInView({
     triggerOnce: true,
     delay: 300,
@@ -32,11 +25,20 @@ export const Footer: React.FC = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
 
+    setEmailIsSent(false);
+    setErrorSendingEmail(null);
     setEmail(e.target.value);
   };
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+
+    const verifiedEmail = email.match(/^\S+@\S+\.\S+$/);
+    if (!verifiedEmail)
+      return setErrorSendingEmail(new Error("it should be en Email"));
+
+    setErrorSendingEmail(null);
+    setEmailIsSent(true);
   };
 
   return (
@@ -124,14 +126,20 @@ export const Footer: React.FC = () => {
             ))}
           </div>
 
-          <div className="w-full md:w-1/2 flex flex-col sm:flex-row flex-nowrap">
+          <div className="w-full lg:w-3/4 flex flex-col sm:flex-row flex-nowrap">
             <label htmlFor="email" className="sr-only">
               email address
             </label>
             <input
               id="email"
               name="email"
-              className="w-full py-3 px-5 bg-black opacity-30 outline-none"
+              className={`w-full py-3 px-5 bg-black border-2 border-black/30 outline-none duration-300 ${
+                emailIsSent
+                  ? "text-lime-500 opacity-100 border-lime-500/100"
+                  : errorSendingEmail
+                  ? "text-red-600 opacity-100 border-red-600/100"
+                  : "text-primary opacity-30"
+              }`}
               placeholder="Email Address"
               onChange={handleChange}
               value={email}
